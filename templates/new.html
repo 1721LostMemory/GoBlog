@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>写新文章</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <a class="navbar-brand d-flex align-items-center">
+        <span class="fw-bold fs-5">发一篇新帖子</span>
+        <img src="../static/images/heart-balloon.svg" alt="logo" class="gopher-logo">
+    </a>
+
+    <form id="postForm" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="title" class="form-label">标题</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+
+        <div class="mb-3 d-flex align-items-center gap-3">
+            <label for="imageInput" class="btn btn-outline-primary">选择图片</label>
+            <input class="form-control d-none" type="file" id="imageInput" accept="image/*" multiple>
+        </div>
+
+        <div id="preview" class="d-flex flex-wrap gap-3 mb-3"></div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">内容</label>
+            <textarea class="form-control" id="content" name="content" rows="6" required></textarea>
+        </div>
+
+        <!-- 隐藏的 input 用来传递 folder_name -->
+        <input type="hidden" id="folder_name" name="folder_name">
+
+        <button type="submit" class="btn btn-success">发布文章</button>
+        <a href="/" class="btn btn-secondary">返回首页</a>
+    </form>
+</div>
+
+<script>
+    const imageInput = document.getElementById('imageInput');
+    const preview = document.getElementById('preview');
+    const postForm = document.getElementById('postForm');
+    const folderNameInput = document.getElementById('folder_name'); // 获取隐藏的 input
+    let filesArray = [];
+
+    imageInput.addEventListener('change', function (e) {
+        const files = Array.from(e.target.files);
+        if (files.length === 0) return;
+
+        files.forEach(file => {
+            if (!file.type.startsWith('image/')) return;
+
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const wrapper = document.createElement('div');
+                wrapper.style.position = 'relative';
+
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.style.width = '120px';
+                img.style.borderRadius = '8px';
+                img.style.border = '1px solid #ccc';
+
+                const closeBtn = document.createElement('span');
+                closeBtn.textContent = '×';
+                closeBtn.style.position = 'absolute';
+                closeBtn.style.top = '4px';
+                closeBtn.style.right = '8px';
+                closeBtn.style.cursor = 'pointer';
+                closeBtn.style.fontWeight = 'bold';
+                closeBtn.style.background = '#fff';
+                closeBtn.style.borderRadius = '50%';
+                closeBtn.style.padding = '0 5px';
+
+                closeBtn.onclick = function () {
+                    preview.removeChild(wrapper);
+                    filesArray = filesArray.filter(f => f !== file); // 彻底从数组移除
+                };
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(closeBtn);
+                preview.appendChild(wrapper);
+            };
+
+            reader.readAsDataURL(file);
+            filesArray.push(file); // 将文件存入数组
+        });
+
+        imageInput.value = ''; // 清除 input，避免无法连续上传
+    });
+
+    postForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const title = document.getElementById('title').value.trim();
+        const content = document.getElementById('content').value.trim();
+
+        if (!title || !content) {
+            alert("标题和内容不能为空");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('content', content);
+
+        // 使用当前时间（精确到毫秒）和一个随机数生成 folder_name
+        const timestamp = Date.now();  // 当前时间的毫秒数
+        const randomNum = Math.floor(Math.random() * 1000);  // 生成一个0到999的随机数
+        const folderName = `${timestamp}-${randomNum}`;
+
+        // 将生成的 folder_name 传递给隐藏的 input
+        folderNameInput.value = folderName;
+        formData.append('folder_name', folderName);
+
+        // 将所有图片文件添加到 FormData 中
+        filesArray.forEach((file) => {
+            formData.append('images', file);  // 将文件添加到 FormData 中
+        });
+
+        console.log('Generated Folder Name:', folderName);  // 可查看生成的 folder_name
+
+        fetch('/posts', {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('发布成功！');
+                    window.location.href = '/';
+                } else {
+                    alert('发布失败：' + (data.message || '未知错误'));
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('提交失败，请检查网络连接。');
+            });
+    });
+
+</script>
+
+</body>
+</html>

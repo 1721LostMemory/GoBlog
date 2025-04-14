@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .userName }} 的个人主页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+</head>
+<body>
+<div class="container profile-page">
+    <div class="profile-header">
+        <h1 class="text-center">{{ .userName }} 的个人主页</h1>
+        <p class="text-center text-muted">性别: {{ .gender }}</p>
+        <p class="text-center text-muted">年龄: {{ .age }}</p>
+        <p class="text-center text-muted">电子邮件: {{ .email }}</p>
+    </div>
+
+    <div class="profile-content">
+        <h3 class="text-center">我的文章</h3>
+
+        {{ if .posts }}
+        <ul class="list-group">
+            {{ range .posts }}
+            <li class="list-group-item d-flex align-items-center">
+                <a href="/posts/{{ .ID }}" class="post-title">{{ .Title }}</a>
+                <p class="text-muted ml-2 mb-0">{{ .CreatedAt.Format "2006-01-02 15:04" }}</p>
+            </li>
+            {{ end }}
+        </ul>
+        {{ else }}
+        <p class="text-center text-muted">你还没有发表任何文章。</p>
+        {{ end }}
+    </div>
+
+    <div class="profile-footer text-center">
+        <a href="/edit-profile/{{ .user.ID }}" class="btn btn-primary">编辑个人资料</a>
+        <!-- 添加返回主页按钮 -->
+        <a href="/" class="btn btn-secondary ml-2">返回主页</a>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

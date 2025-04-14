@@ -1,0 +1,118 @@
+/* === 自定义导航栏 === */
+nav.custom-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 阴影 */
+    height: 70px; /* 提高导航栏高度 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    border-radius: 12px;
+}
+
+/* Logo区域 */
+.custom-navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* 增加间距 */
+    text-decoration: none;
+}
+
+/* Logo图片 */
+.gopher-logo {
+    height: 108px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* 站点名 */
+.navbar-brand span {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* 搜索框 */
+.custom-navbar .search-form {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;  /* 保持最大宽度 */
+}
+
+/* 输入框 */
+.custom-navbar .search-form .form-control {
+    border-radius: 25px 0 0 25px;
+    border: none;
+    padding: 6px 10px;  /* 减小内边距 */
+    font-size: 14px;  /* 减小字体大小 */
+    flex: 1;
+}
+
+/* 搜索按钮 */
+.custom-navbar .search-form .btn {
+    border-radius: 0 25px 25px 0;
+    padding: 6px 12px;  /* 减小按钮内边距 */
+    font-size: 14px;  /* 减小字体大小 */
+    background-color: rgb(183, 207, 229); /* 按钮颜色 */
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.custom-navbar .search-form .btn:hover {
+    background-color: #f44336;
+}
+
+
+/* 右侧按钮区 */
+.custom-navbar .auth-buttons {
+    display: flex;
+    gap: 20px;  /* 增加间距 */
+    align-items: center;
+}
+
+/* 登录/注册按钮 */
+.custom-navbar .auth-buttons .btn {
+    padding: 10px 20px;  /* 调整按钮内边距 */
+    font-size: 16px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.custom-navbar .auth-buttons .btn-outline-primary {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.custom-navbar .auth-buttons .btn-outline-primary:hover {
+    background-color: #ffffff;
+    color: #007bff;
+}
+
+.custom-navbar .auth-buttons .btn-primary {
+    background-color: #ffffff;
+    color: #007bff;
+}
+
+.custom-navbar .auth-buttons .btn-primary:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* 小屏显示隐藏搜索框 */
+@media (max-width: 768px) {
+    .custom-navbar .search-form {
+        display: flex;
+        width: 100%;
+    }
+
+    .custom-navbar .auth-buttons {
+        flex-direction: column;
+        gap: 15px;  /* 小屏幕时按钮之间增加间距 */
+    }
+}

@@ -1,0 +1,71 @@
+/* === 页面主内容 === */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* 标题 */
+.container h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* 卡片样式 */
+.card {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-body h4 {
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #212529;
+}
+
+.card-body p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* 表单区域 */
+form {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 按钮样式 */
+.container .btn-primary {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: #ff7043;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.container .btn-primary:hover {
+    background-color: #f44336;
+}
+
+.container .btn-outline-secondary {
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 25px;
+}
+
+/* 图片预览 */
+#preview img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 8px;
+}

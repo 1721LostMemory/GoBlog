@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/header.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+{{ template "header.html" . }}
+
+<div class="container">
+    <hr>
+
+    {{ range .posts }}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{ .Title }}</h4>
+            <p class="card-text text-muted small">文章 ID: {{ .ID }}</p>
+            <p class="card-text text-muted small">作者: {{ .Author }}</p>
+            <a href="/posts/{{ .ID }}" class="btn btn-outline-secondary btn-sm">📖 阅读</a>
+        </div>
+    </div>
+    {{ else }}
+    <p class="text-center text-muted">🙈 还没有文章，快去写一篇吧～</p>
+    {{ end }}
+</div>
+
+</body>
+</html>

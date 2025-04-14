@@ -1,0 +1,148 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+/* Profile Page Container */
+.profile-page {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Header */
+.profile-header {
+    margin-bottom: 30px;
+}
+
+.profile-header h1 {
+    font-size: 36px;
+    color: #333;
+}
+
+.profile-header p {
+    font-size: 18px;
+}
+
+/* Profile Content */
+.profile-content {
+    margin-bottom: 40px;
+}
+
+.profile-content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Ensure list items use flex for inline layout */
+.list-group-item {
+    border: none;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;  /* Use flex for inline layout */
+    justify-content: space-between;  /* Space between title and timestamp */
+    align-items: center;  /* Vertically align the items */
+}
+
+/* Link styling */
+.list-group-item a {
+    font-size: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.list-group-item a:hover {
+    text-decoration: underline;
+}
+
+/* Text color for the timestamp */
+.text-muted {
+    color: #6c757d;
+}
+
+/* Styling for the timestamp (createdAt) */
+.list-group-item p {
+    margin: 0;  /* Remove default margin from p */
+    font-size: 14px;
+}
+
+/* Profile Footer */
+.profile-footer {
+    margin-top: 30px;
+}
+
+.profile-footer a {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.profile-footer a:hover {
+    background-color: #0056b3;
+}
+
+/* Custom styles for the profile page links */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Customizing text-muted for a more subtle gray */
+.text-muted {
+    color: #6c757d;
+}
+
+/* Additional margin adjustments for the post snippet */
+.post-snippet {
+    color: #555;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Ensuring no bottom margin on the text-muted class */
+.list-group-item p {
+    margin-bottom: 0;
+}
+
+/* Styling for unordered list to ensure bullets are displayed */
+ul {
+    list-style: initial; /* Ensures bullets are visible */
+    padding-left: 20px;  /* Adds padding for bullets */
+}
+
+/* Additional responsiveness for smaller screens */
+@media (max-width: 767px) {
+    .profile-page {
+        padding: 10px;
+    }
+
+    .profile-header h1 {
+        font-size: 28px;
+    }
+
+    .profile-content h3 {
+        font-size: 20px;
+    }
+
+    .list-group-item {
+        padding: 10px;
+    }
+
+    .profile-footer a {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
