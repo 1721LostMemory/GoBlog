@@ -39,5 +39,7 @@ func SetupRouter() *gin.Engine {
 	r.GET("/logout", controller.Logout)
 	// 个人主页
 	r.GET("/user/:userName", controller.UserHome)
+	// 排行榜 (贴子数)
+	r.GET("/rank", controller.RankByPosts)
 	return r
 }

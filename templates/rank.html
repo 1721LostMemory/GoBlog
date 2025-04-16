@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>发帖排行榜</title>
+    <link rel="stylesheet" href="/static/css/rank.css">
+</head>
+<body>
+<div class="container">
+    <h1>发帖排行榜 🏆</h1>
+    <img src="/static/images/liberty.svg" alt="Gopher Logo">
+    <table>
+        <thead>
+        <tr>
+            <th>排名</th>
+            <th>用户名</th>
+            <th>发帖数</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{ range .ranks }}
+        <tr>
+            <td>{{ .Rank }}</td>
+            <td>{{ .Username }}</td>
+            <td>{{ .PostCount }}</td>
+        </tr>
+        {{ end }}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

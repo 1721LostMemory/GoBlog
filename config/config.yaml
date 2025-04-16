@@ -8,3 +8,10 @@ mysql:
 
 session:
   key: asdfghjkl
+
+redis:
+  address: 101.201.51.40:6379
+  password: 123456
+  DB: 1
+  poolSize: 30
+  minIdleConns: 30

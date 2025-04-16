@@ -121,7 +121,11 @@ func SearchPosts(c *gin.Context) {
 		return
 	}
 
+	isLogin, _ := c.Get("isLogin")
+	user, _ := c.Get("user")
 	c.HTML(http.StatusOK, "search.html", gin.H{
+		"isLogin": isLogin,
+		"user":    user,
 		"Title":   "搜索结果",
 		"query":   query,
 		"results": results})

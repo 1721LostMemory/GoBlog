@@ -1,29 +1,30 @@
 <nav class="custom-navbar">
     <div class="container d-flex justify-content-between align-items-center">
         <!-- 左侧 Logo（Gopher + 站点名） -->
-        <a class="navbar-brand d-flex align-items-center" >
+        <a class="navbar-brand d-flex align-items-center" href="/">
             <img src="../static/images/gopher.svg" alt="logo" class="gopher-logo">
-            <span class="fw-bold fs-5">Go论坛</span>
+            <span class="fw-bold fs-5">Thinking社区</span>
         </a>
 
         <!-- 搜索框 -->
-        <form class="search-form  " method="GET" action="/search">
-            <input class="form-control me-2" type="search" name="query" placeholder="搜索帖子ID/作者ID/关键词" aria-label="搜索">
-            <button class="btn btn-outline-primary" type="submit">🔍</button>
+        <form class="search-form" method="GET" action="/search">
+            <input class="search-input" type="search" name="query" placeholder="搜索帖子ID/作者ID/关键词" aria-label="搜索">
+            <span class="search-icon">🔍</span>
         </form>
 
         <!-- 右侧内容 -->
         <div class="d-flex align-items-center">
             {{ if .isLogin }}
             <!-- 如果已登录，显示用户名 -->
-            <a href="/user/{{ .user }}" class="navbar-text me-3"><{{ .user }}></a>
-            <a href="/logout" class="btn btn-outline-primary">注销</a>
+            <a href="/user/{{ .user }}" class="navbar-link"><{{ .user }}></a>
+            <a href="/logout" class="navbar-link">注销</a>
             {{ else }}
-            <!-- 如果未登录，显示登录和注册按钮 -->
-            <a href="/login"  class="btn btn-outline-primary">登录</a>
-            <a href="/register" class="btn btn-primary">注册</a>
+            <!-- 如果未登录，显示登录和注册链接 -->
+            <a href="/login" class="navbar-link">登录</a>
+            <a href="/register" class="navbar-link">注册</a>
             {{ end }}
-            <a href="/posts/new" class="btn btn-outline-primary">✍️ 发帖子</a>
+            <a href="/rank" target="_blank" class="navbar-link">排行榜</a>
+            <a href="/posts/new" target="_blank" class="navbar-link ">✍️ 发帖子</a>
         </div>
     </div>
 </nav>

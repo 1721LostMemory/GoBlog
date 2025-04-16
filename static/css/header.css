@@ -3,116 +3,140 @@ nav.custom-navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-    border: none;
+    background-color: #f7f7f7; /* 浅灰色背景 */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 阴影 */
-    height: 70px; /* 提高导航栏高度 */
+    height: 60px; /* 设置导航栏高度 */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 25px;
-    border-radius: 12px;
+    padding: 0 30px;
+    border-radius: 15px;
 }
 
 /* Logo区域 */
 .custom-navbar .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 15px; /* 增加间距 */
+    gap: 12px;
     text-decoration: none;
 }
 
 /* Logo图片 */
 .gopher-logo {
-    height: 108px;
+    height: 100px; /* 调整Logo大小 */
     width: auto;
     object-fit: contain;
 }
 
 /* 站点名 */
 .navbar-brand span {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
-    color: #ffffff;
+    color: #333;
 }
 
-/* 搜索框 */
+/* 隐藏表单 */
 .custom-navbar .search-form {
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 500px;  /* 保持最大宽度 */
+    position: relative;
+    width: 250px; /* 限制搜索框宽度 */
+    height: 40px; /* 调整高度，确保输入框居中 */
 }
 
-/* 输入框 */
-.custom-navbar .search-form .form-control {
-    border-radius: 25px 0 0 25px;
-    border: none;
-    padding: 6px 10px;  /* 减小内边距 */
-    font-size: 14px;  /* 减小字体大小 */
-    flex: 1;
+/* 搜索输入框 */
+.search-input {
+    width: 100%;
+    padding: 8px 16px; /* 缩小输入框内边距 */
+    font-size: 14px; /* 减小字体大小 */
+    border-radius: 30px; /* 调整圆角大小 */
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    color: #555;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-sizing: border-box;
+    height: 30px; /* 缩小输入框高度 */
 }
 
-/* 搜索按钮 */
-.custom-navbar .search-form .btn {
-    border-radius: 0 25px 25px 0;
-    padding: 6px 12px;  /* 减小按钮内边距 */
-    font-size: 14px;  /* 减小字体大小 */
-    background-color: rgb(183, 207, 229); /* 按钮颜色 */
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease-in-out;
+/* 输入框聚焦时效果 */
+.search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+    outline: none;
 }
 
-.custom-navbar .search-form .btn:hover {
-    background-color: #f44336;
+/* 隐藏按钮 */
+.custom-navbar .search-form button {
+    display: none;
 }
 
+/* 搜索图标 */
+.search-icon {
+    position: absolute;
+    right: 10px; /* 调整图标位置 */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px; /* 调整图标大小 */
+    color: #007bff;
+    cursor: pointer;
+}
 
-/* 右侧按钮区 */
-.custom-navbar .auth-buttons {
-    display: flex;
-    gap: 20px;  /* 增加间距 */
+/* 右侧内容区 */
+.custom-navbar .d-flex {
+    gap: 20px;
     align-items: center;
 }
 
-/* 登录/注册按钮 */
-.custom-navbar .auth-buttons .btn {
-    padding: 10px 20px;  /* 调整按钮内边距 */
-    font-size: 16px;
-    border-radius: 30px;
-    transition: background-color 0.3s ease;
+/* 链接样式 */
+.navbar-link {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.custom-navbar .auth-buttons .btn-outline-primary {
-    border-color: #ffffff;
-    color: #ffffff;
-}
-
-.custom-navbar .auth-buttons .btn-outline-primary:hover {
-    background-color: #ffffff;
+/* 链接高亮效果 */
+.navbar-link:hover {
     color: #007bff;
+    transform: translateY(-3px);
 }
 
-.custom-navbar .auth-buttons .btn-primary {
-    background-color: #ffffff;
-    color: #007bff;
+/* 链接聚焦时显示下划线 */
+.navbar-link:focus, .navbar-link:hover {
+    outline: none;
 }
 
-.custom-navbar .auth-buttons .btn-primary:hover {
-    background-color: #0056b3;
-    color: white;
+.navbar-link:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #007bff;
+    left: 0;
+    bottom: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
 }
 
-/* 小屏显示隐藏搜索框 */
+.navbar-link:hover:before {
+    transform: scaleX(1);
+}
+
+
+/* 小屏幕下的适配 */
 @media (max-width: 768px) {
-    .custom-navbar .search-form {
-        display: flex;
-        width: 100%;
+    .custom-navbar {
+        padding: 0 15px;
     }
 
-    .custom-navbar .auth-buttons {
-        flex-direction: column;
-        gap: 15px;  /* 小屏幕时按钮之间增加间距 */
+    .custom-navbar .d-flex {
+        gap: 10px;
+    }
+
+    .search-form {
+        width: 200px;
     }
 }

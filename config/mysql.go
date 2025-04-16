@@ -12,7 +12,7 @@ var MysqlDB *gorm.DB
 
 // LoadConfig 加载配置文件
 
-func InitDB() {
+func InitMySQL() {
 	// 读取配置文件中的数据库信息
 	LoadConfig()
 

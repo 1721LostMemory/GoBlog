@@ -1,0 +1,54 @@
+body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    background-color: #fff;
+    margin: 40px auto;           /* 👈 顶部留出 40px 距离，左右居中 */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 24px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;       /* 👈 每列居中 */
+    min-width: 80px;          /* 👈 设置最小宽度 */
+    font-size: 16px;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f0f8ff;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* 浅灰 */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #eef5ff; /* 淡蓝 */
+}
+
